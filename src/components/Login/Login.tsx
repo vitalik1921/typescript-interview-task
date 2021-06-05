@@ -4,7 +4,7 @@ import { SyntheticEvent, useState } from "react";
 
 import { useHistory } from "react-router-dom";
 import { Routes } from "~/constants";
-import login from "~/services/login";
+import { login } from "~/services/auth";
 
 import ErrorBlock from "../ErrorBlock";
 

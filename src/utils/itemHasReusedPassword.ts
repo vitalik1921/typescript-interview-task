@@ -1,6 +1,6 @@
-import { IItem } from "~/services/getUserItems";
+import { IPassword } from "~/services/passwords";
 
-const itemHasReusedPassword = (item: IItem, itemList: Array<IItem>) => {
+const itemHasReusedPassword = (item: IPassword, itemList: Array<IPassword>) => {
   const reusedItems = itemList.filter(
     (listItem) => listItem.password === item.password
   );

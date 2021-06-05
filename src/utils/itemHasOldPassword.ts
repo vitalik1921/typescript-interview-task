@@ -1,6 +1,6 @@
-import { IItem } from "~/services/getUserItems";
+import { IPassword } from "~/services/passwords";
 
-const itemHasOldPassword = (item: IItem) => {
+const itemHasOldPassword = (item: IPassword) => {
   const { createdAt: createdAtRaw } = item;
   const oneDay = 24 * 60 * 60 * 1000;
   const createdAt = new Date(createdAtRaw);

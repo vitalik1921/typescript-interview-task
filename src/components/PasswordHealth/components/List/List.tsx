@@ -4,16 +4,16 @@ import { FC, useState } from "react";
 
 import Modal from "react-modal";
 import { usePasswordsContext } from "~/contexts/PasswordsContext";
-import { IItem } from "~/services/getUserItems";
+import { IPassword } from "~/services/passwords";
 
 import ItemIcon from "./components/ItemIcon";
 
 interface IList {
-  items: Array<IItem>;
+  items: Array<IPassword>;
 }
 
 interface IUpdateModal {
-  item: IItem;
+  item: IPassword;
 }
 
 const UpdateModal: FC<IUpdateModal> = ({ item }) => {

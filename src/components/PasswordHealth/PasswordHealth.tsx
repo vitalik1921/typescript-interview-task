@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { Routes } from "~/constants";
 import { usePasswordsContext } from "~/contexts/PasswordsContext";
+import { useUserContext } from "~/contexts/UserContext";
 
-import { useUserContext } from "../../contexts/UserContext";
 import ErrorBlock from "../ErrorBlock";
 import LoadingScreen from "../LoadingScreen";
 import Filter from "./components/Filter/Filter";

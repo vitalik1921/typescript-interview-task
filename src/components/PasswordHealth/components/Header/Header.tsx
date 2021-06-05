@@ -5,7 +5,7 @@ import { FC } from "react";
 import { useHistory } from "react-router-dom";
 import { Routes } from "~/constants";
 
-import logout from "../../../../services/logout";
+import { logout } from "~/services/auth";
 
 interface IHeader {
   vulnerabilitiesCount: number;

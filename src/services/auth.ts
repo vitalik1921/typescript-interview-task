@@ -1,8 +1,8 @@
 import { API } from "~/constants";
 
-import getUrl from "../utils/getUrl";
+import getUrl from "~/utils/getUrl";
 
-const login = async (username: string, password: string) => {
+export const login = async (username: string, password: string) => {
   const url = getUrl(API.Login, {
     username,
     password,
@@ -15,4 +15,9 @@ const login = async (username: string, password: string) => {
   localStorage.setItem("token", token);
 };
 
-export default login;
+export const logout = async () => {
+  const url = getUrl(API.Logout);
+  await fetch(url);
+  localStorage.removeItem("token");
+};
+
