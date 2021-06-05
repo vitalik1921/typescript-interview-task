@@ -1,14 +1,15 @@
-import List from './components/List/List';
-import useItemsProvider from './useItemsProvider';
-import ErrorBlock from '../ErrorBlock';
-import Filter from './components/Filter/Filter';
-import LoadingScreen from '../LoadingScreen';
-import Header from './components/Header/Header';
-import {Route, Switch} from "react-router-dom";
-import {Routes} from '~/constants';
-import itemHasWeakPassword from "~/utils/itemHasWeakPassword";
-import itemHasReusedPassword from "~/utils/itemHasReusedPassword";
-import { useUserContext } from '../UserContext';
+import { useEffect } from "react";
+
+import { Route, Switch } from "react-router-dom";
+import { Routes } from "~/constants";
+import { usePasswordsContext } from "~/contexts/PasswordsContext";
+import { useUserContext } from "~/contexts/UserContext";
+
+import ErrorBlock from "../ErrorBlock";
+import LoadingScreen from "../LoadingScreen";
+import Filter from "./components/Filter/Filter";
+import Header from "./components/Header/Header";
+import List from "./components/List/List";
 
 const PasswordHealth = () => {
   const {
@@ -19,31 +20,53 @@ const PasswordHealth = () => {
 
   const {
     items,
+    itemsWithWeakPassword,
+    itemWithReusedPassword,
+    itemWithOldPassword,
     isLoading,
     errorMessage,
-  } = useItemsProvider();
+    getItems,
+  } = usePasswordsContext();
+
+  useEffect(() => {
+    getItems();
+  }, []);
 
   if (isLoading || userDataIsLoading) {
-    return <LoadingScreen/>
+    return <LoadingScreen />;
   }
 
   if (userProviderErrorMessage || errorMessage) {
-    return <ErrorBlock error={userProviderErrorMessage || errorMessage}/>
+    return <ErrorBlock error={userProviderErrorMessage || errorMessage} />;
   }
 
   return (
     <div className="container">
-      <Header items={items} username={username} />
-      <Filter items={items}/>
+      <Header
+        vulnerabilitiesCount={
+          itemsWithWeakPassword.length +
+          itemWithReusedPassword.length +
+          itemWithOldPassword.length
+        }
+        username={username}
+      />
+      <Filter
+        itemWithWeakPasswordCount={itemsWithWeakPassword.length}
+        itemWithReusedPasswordCount={itemWithReusedPassword.length}
+        itemWithOldPasswordCount={itemWithOldPassword.length}
+      />
       <Switch>
         <Route exact path={Routes.PasswordHealth}>
-          <List items={items}/>
+          <List items={items} />
         </Route>
         <Route path={Routes.Weak}>
-          <List items={items.filter(itemHasWeakPassword)}/>
+          <List items={itemsWithWeakPassword} />
         </Route>
         <Route path={Routes.Reused}>
-          <List items={items.filter((item) => itemHasReusedPassword(item, items))}/>
+          <List items={itemWithReusedPassword} />
+        </Route>
+        <Route path={Routes.Old}>
+          <List items={itemWithOldPassword} />
         </Route>
       </Switch>
     </div>
