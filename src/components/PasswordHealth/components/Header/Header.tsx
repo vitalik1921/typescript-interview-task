@@ -7,11 +7,11 @@ import logout from "../../../../services/logout";
 import "./header-style.scss";
 
 interface IHeader {
-  items: Array<IItem>;
+  vulnerabilitiesCount: number;
   username: string;
 }
 
-const Header: FC<IHeader> = ({ items, username }) => {
+const Header: FC<IHeader> = ({ vulnerabilitiesCount, username }) => {
   const { push } = useHistory();
 
   const handleLogout = async () => {
@@ -24,7 +24,7 @@ const Header: FC<IHeader> = ({ items, username }) => {
       <div className="user-section">
         <button onClick={handleLogout}>{`Logout ${username}`}</button>
       </div>
-      <h1>{`${items.length} Items are vulnerable`}</h1>
+      <h1>{`${vulnerabilitiesCount} Items are vulnerable`}</h1>
       <span>Create new complex passwords to protect your accounts</span>
     </div>
   );
