@@ -1,7 +1,6 @@
 import * as auth from "~/services/auth";
 
 import { cleanup, fireEvent, render, waitFor } from "@testing-library/react";
-import history from "history";
 
 import Login from "../Login/Login";
 
@@ -53,7 +52,11 @@ describe("<Login /> component", () => {
 
     expect(loginForm.classList.contains("loading")).toBeTruthy();
     await waitFor(() => expect(mockHistoryPush).not.toBeCalled());
-    await waitFor(() => expect(getByText("Invalid username or password")).toBeDefined());
-    await waitFor(() => expect(loginForm.classList.contains("loading")).toBeFalsy());
+    await waitFor(() =>
+      expect(getByText("Invalid username or password")).toBeDefined()
+    );
+    await waitFor(() =>
+      expect(loginForm.classList.contains("loading")).toBeFalsy()
+    );
   });
 });
