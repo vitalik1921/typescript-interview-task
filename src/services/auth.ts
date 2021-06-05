@@ -3,12 +3,23 @@ import { API } from "~/constants";
 import getUrl from "~/utils/getUrl";
 
 export const login = async (username: string, password: string) => {
-  const url = getUrl(API.Login, {
+  const url = getUrl(API.Login);
+
+  const bodyString = JSON.stringify({
     username,
     password,
   });
 
-  const response = await fetch(url);
+  const headers = new Headers();
+  headers.append("Accept", "application/json");
+  headers.append("Content-Type", "application/json");
+  headers.append("Content-Length", bodyString.length.toString());
+
+  const response = await fetch(url, {
+    headers,
+    method: "POST",
+    body: bodyString,
+  });
   const data = await response.json();
   const { token } = data;
 
@@ -20,4 +31,3 @@ export const logout = async () => {
   await fetch(url);
   localStorage.removeItem("token");
 };
-
