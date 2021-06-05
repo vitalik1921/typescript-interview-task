@@ -43,6 +43,7 @@ const Login = () => {
           placeholder="Username"
           type="text"
           className="input mt-52px"
+          data-testid="username-input"
         />
         <input
           value={password}
@@ -50,9 +51,14 @@ const Login = () => {
           placeholder="Password"
           type="password"
           className="input mt-24px"
+          data-testid="password-input"
         />
         <ErrorBlock error={errorMessage} />
-        <button type="submit" className="button mt-24px">
+        <button
+          type="submit"
+          className="button mt-24px"
+          data-testid="submit-button"
+        >
           Login
         </button>
       </form>
