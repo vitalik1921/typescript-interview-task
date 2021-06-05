@@ -35,6 +35,7 @@ const Login = () => {
       <form
         className={`login-form ${loading ? "loading" : ""}`}
         onSubmit={handleSubmit}
+        data-testid="login-form"
       >
         <h1 className="text-center">Password Health</h1>
         <input
