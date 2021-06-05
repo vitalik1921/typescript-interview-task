@@ -18,7 +18,7 @@ router.post('/api/items', authentication, (req, res) => {
     return;
   }
   
-  updateItem({
+  const updatedItem = updateItem({
     id,
     title,
     description,
@@ -26,7 +26,7 @@ router.post('/api/items', authentication, (req, res) => {
     createdAt: new Date().toDateString(),
   })
 
-  res.status(200).send();
+  res.status(200).send(updatedItem);
 });
 
 export default router;

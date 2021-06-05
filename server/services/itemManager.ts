@@ -4,6 +4,7 @@ let items = [];
 
 export const updateItem = (item) => {
   items.push(item);
+  return item;
 };
 
 export const getItems = () => {

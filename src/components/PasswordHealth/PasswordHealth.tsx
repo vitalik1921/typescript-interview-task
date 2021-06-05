@@ -1,5 +1,4 @@
 import List from './components/List/List';
-import useItemsProvider from './useItemsProvider';
 import ErrorBlock from '../ErrorBlock';
 import Filter from './components/Filter/Filter';
 import LoadingScreen from '../LoadingScreen';
@@ -9,7 +8,9 @@ import {Routes} from '~/constants';
 import itemHasWeakPassword from "~/utils/itemHasWeakPassword";
 import itemHasReusedPassword from "~/utils/itemHasReusedPassword";
 import itemHasOldPassword from "~/utils/itemHasOldPassword";
-import { useUserContext } from '../UserContext';
+import { useUserContext } from '../../contexts/UserContext';
+import { usePasswordsContext } from '~/contexts/PasswordsContext';
+import { useEffect } from 'react';
 
 const PasswordHealth = () => {
   const {
@@ -20,9 +21,17 @@ const PasswordHealth = () => {
 
   const {
     items,
+    itemsWithWeakPassword,
+    itemWithReusedPassword,
+    itemWithOldPassword,
     isLoading,
     errorMessage,
-  } = useItemsProvider();
+    getItems,
+  } = usePasswordsContext();
+
+  useEffect(() => {
+    getItems();
+  }, []);
 
   if (isLoading || userDataIsLoading) {
     return <LoadingScreen/>
@@ -41,13 +50,13 @@ const PasswordHealth = () => {
           <List items={items}/>
         </Route>
         <Route path={Routes.Weak}>
-          <List items={items.filter(itemHasWeakPassword)}/>
+          <List items={itemsWithWeakPassword}/>
         </Route>
         <Route path={Routes.Reused}>
-          <List items={items.filter((item) => itemHasReusedPassword(item, items))}/>
+          <List items={itemWithReusedPassword}/>
         </Route>
         <Route path={Routes.Old}>
-          <List items={items.filter(itemHasOldPassword)}/>
+          <List items={itemWithOldPassword}/>
         </Route>
       </Switch>
     </div>
