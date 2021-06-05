@@ -1,5 +1,4 @@
 import { API } from "~/constants";
-
 import getUrl from "~/utils/getUrl";
 
 export const login = async (username: string, password: string) => {
@@ -10,13 +9,12 @@ export const login = async (username: string, password: string) => {
     password,
   });
 
-  const headers = new Headers();
-  headers.append("Accept", "application/json");
-  headers.append("Content-Type", "application/json");
-  headers.append("Content-Length", bodyString.length.toString());
-
   const response = await fetch(url, {
-    headers,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "Content-Length": bodyString.length.toString(),
+    },
     method: "POST",
     body: bodyString,
   });
