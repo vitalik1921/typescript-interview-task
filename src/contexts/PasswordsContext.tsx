@@ -1,5 +1,5 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
-import { API } from "~/constants";
+import { createContext, useContext, useMemo, useState } from "react";
+
 import getUserItems, { IItem } from "~/services/getUserItems";
 import updateItemRequest from "~/services/updateItem";
 import itemHasOldPassword from "~/utils/itemHasOldPassword";

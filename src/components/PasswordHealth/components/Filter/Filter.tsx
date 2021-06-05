@@ -1,12 +1,10 @@
-import { FC } from "react";
-import { Routes } from "~/constants";
-import { IItem } from "~/services/getUserItems";
-import FilterTab from "./components/FilterTab";
-
 import "./filter-style.scss";
-import itemHasWeakPassword from "~/utils/itemHasWeakPassword";
-import itemHasReusedPassword from "~/utils/itemHasReusedPassword";
-import itemHasOldPassword from "~/utils/itemHasOldPassword";
+
+import { FC } from "react";
+
+import { Routes } from "~/constants";
+
+import FilterTab from "./components/FilterTab";
 
 interface IFilter {
   itemWithWeakPasswordCount: number;

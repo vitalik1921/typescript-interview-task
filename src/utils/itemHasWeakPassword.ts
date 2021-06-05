@@ -1,4 +1,4 @@
-import {IItem} from "~/services/getUserItems";
+import { IItem } from "~/services/getUserItems";
 
 const itemHasWeakPassword = (item: IItem) => {
   const { password } = item;

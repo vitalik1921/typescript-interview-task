@@ -1,3 +1,5 @@
+import "./style/styles.scss";
+
 import { BrowserRouter as Router, Redirect, Switch } from "react-router-dom";
 
 import Login from "./components/Login/Login";
@@ -7,8 +9,6 @@ import PublicRoute from "./components/PublicRoute";
 import { Routes } from "./constants";
 import { PasswordsContextProvider } from "./contexts/PasswordsContext";
 import { UserContextProvider } from "./contexts/UserContext";
-
-import "./style/styles.scss";
 
 const App = () => (
   <Router>
