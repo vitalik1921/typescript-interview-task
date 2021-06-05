@@ -20,7 +20,7 @@ const Login = () => {
       await login(username, password);
       push(Routes.PasswordHealth);
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage("Invalid username or password");
     }
   };
 
